@@ -12,6 +12,7 @@ import microsservice_order_app.user_service.v1.model.enums.Active;
 import microsservice_order_app.user_service.v1.model.enums.Authorities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,12 +28,15 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public User createUser(UserRegisterRequest request){
-        Role roleName = roleRepository.findByName(Authorities.USER.name());
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public User createUser(UserRegisterRequest request, Authorities role) throws UserException {
+        Role roleName = roleRepository.findByName(role.name());
         User user = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .roles(Set.of(roleName))
                 .active(Active.ACTIVE)
                 .build();

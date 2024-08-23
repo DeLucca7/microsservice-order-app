@@ -30,7 +30,7 @@ public class UserController {
 
     @PostMapping("/create")
     public ResponseEntity<UserDto> create(@Valid @RequestBody UserRegisterRequest request) {
-        return ResponseEntity.ok(modelMapper.map(userService.createUser(request), UserDto.class));
+        return ResponseEntity.ok(modelMapper.map(userService.createUser(request, Authorities.USER), UserDto.class));
     }
 
     @GetMapping("/getUserById/{userId}")
