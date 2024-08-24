@@ -1,7 +1,6 @@
 package microsservice_order_app.user_service.controllers;
 
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import microsservice_order_app.user_service.controllers.v1.request.UserRegisterRequest;
 import microsservice_order_app.user_service.controllers.v1.request.UserUpdateRequest;
 import microsservice_order_app.user_service.services.UserService;
@@ -19,7 +18,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/user")
-@RequiredArgsConstructor
 public class UserController {
 
     @Autowired
@@ -66,11 +64,10 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/deleteUserById/{id}")
+    @DeleteMapping("/deleteUserById/{userId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteUserById(@PathVariable Long userId) {
         userService.deleteUserById(userId);
         return ResponseEntity.ok().build();
     }
-
 }

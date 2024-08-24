@@ -1,6 +1,5 @@
 package microsservice_order_app.user_service.services;
 
-import lombok.RequiredArgsConstructor;
 import microsservice_order_app.user_service.controllers.v1.request.UserRegisterRequest;
 import microsservice_order_app.user_service.controllers.v1.request.UserUpdateRequest;
 import microsservice_order_app.user_service.repositories.RoleRepository;
@@ -19,7 +18,6 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
 
     @Autowired
