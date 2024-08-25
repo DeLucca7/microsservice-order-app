@@ -7,8 +7,10 @@ import microsservice_order_app.user_service.repositories.UserRepository;
 import microsservice_order_app.user_service.services.exceptions.UserException;
 import microsservice_order_app.user_service.v1.model.Role;
 import microsservice_order_app.user_service.v1.model.User;
+import microsservice_order_app.user_service.v1.model.dtos.AuthUserDto;
 import microsservice_order_app.user_service.v1.model.enums.Active;
 import microsservice_order_app.user_service.v1.model.enums.Authorities;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +30,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     public User createUser(UserRegisterRequest request, Authorities role) throws UserException {
         Role roleName = roleRepository.findByName(role.name());
@@ -68,5 +73,16 @@ public class UserService {
     public User getUserByUsername(String username){
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UserException("Usuário não encontrado", HttpStatus.NOT_FOUND.value()));
+    }
+
+    public AuthUserDto getAuthUserByUsername(String username){
+        User user = getUserByUsername(username);
+        Authorities role = user.getRoles().stream()
+                .findFirst()
+                .map(roles -> Authorities.valueOf(roles.getName().toUpperCase()))
+                .orElse(null);
+        AuthUserDto userDto = modelMapper.map(user, AuthUserDto.class);
+        userDto.setRole(role);
+        return userDto;
     }
 }
