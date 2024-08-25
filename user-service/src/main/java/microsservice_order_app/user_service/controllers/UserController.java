@@ -32,18 +32,18 @@ public class UserController {
     }
 
     @GetMapping("/getUserById/{userId}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable Long userId) {
+    public ResponseEntity<UserDto> getUserById(@PathVariable("userId") Long userId) {
         return ResponseEntity.ok(modelMapper.map(userService.getUserById(userId), UserDto.class));
     }
 
     @GetMapping("/getUserByEmail/{email}")
-    public ResponseEntity<UserDto> getUserByEmail(@PathVariable String email) {
+    public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
         return ResponseEntity.ok(modelMapper.map(userService.getUserByEmail(email.trim()), UserDto.class));
     }
 
     @GetMapping("/getUserByUsername/{username}")
-    public ResponseEntity<AuthUserDto> getUserByUsername(@PathVariable String username) {
-        return ResponseEntity.ok(modelMapper.map(userService.getUserByUsername(username), AuthUserDto.class));
+    public ResponseEntity<AuthUserDto> getUserByUsername(@PathVariable("username") String username) {
+        return ResponseEntity.ok(userService.getAuthUserByUsername(username));
     }
 
     @GetMapping("/getAll")
@@ -66,7 +66,7 @@ public class UserController {
 
     @DeleteMapping("/deleteUserById/{userId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> deleteUserById(@PathVariable Long userId) {
+    public ResponseEntity<Void> deleteUserById(@PathVariable("userId") Long userId) {
         userService.deleteUserById(userId);
         return ResponseEntity.ok().build();
     }
