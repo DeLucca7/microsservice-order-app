@@ -10,12 +10,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @FeignClient(name = "user-service", url = "${api.url.user-service}")
 public interface UserServiceFeign {
 
-    @PostMapping("/create")
+    @PostMapping(value = "/create",
+            headers = {"Content-Type= application/json"},
+            consumes = APPLICATION_JSON_VALUE,
+            produces = APPLICATION_JSON_VALUE)
     ResponseEntity<UserRegisterDto> create(@RequestBody UserRegisterRequestDto request);
 
-    @GetMapping("/getUserByUsername/{username}")
-    ResponseEntity<UserDto> getUserByUsername(@PathVariable String username);
+    @GetMapping(value = "/getUserByUsername/{username}",
+            headers = {"Content-Type= application/json"},
+            consumes = APPLICATION_JSON_VALUE,
+            produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<UserDto> getUserByUsername(@PathVariable("username") String username);
 }
