@@ -6,12 +6,14 @@ import microsservice_order_app.order_service.models.Product;
 import microsservice_order_app.order_service.repositories.ProductRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 
 @SpringBootApplication
 @RequiredArgsConstructor
+@EnableFeignClients
 public class OrderServiceApplication {
 	private final ProductRepository productRepository;
 
