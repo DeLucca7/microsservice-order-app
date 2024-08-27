@@ -20,8 +20,11 @@ import java.util.stream.Collectors;
 public class OrderService {
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
+    private final UserService userService;
 
     public Order createOrder(OrderRequestDto requestDto) {
+        this.userService.checkIfUserExists(requestDto.getUserId());
+
         Order order = new Order();
 
         List<OrderItem> items = requestDto.getItems()
