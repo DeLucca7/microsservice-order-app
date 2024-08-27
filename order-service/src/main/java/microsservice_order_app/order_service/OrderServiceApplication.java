@@ -23,6 +23,8 @@ public class OrderServiceApplication {
 
 	@PostConstruct
 	public void init() {
+
+
 		productRepository.saveAll(Arrays.asList(
 				new Product("Gift Card Play Store BRL100", BigDecimal.valueOf(100.00)),
 				new Product("Gift Card Play Store BRL200", BigDecimal.valueOf(200.00))
