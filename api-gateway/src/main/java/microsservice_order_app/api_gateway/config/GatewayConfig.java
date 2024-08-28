@@ -22,8 +22,8 @@ public class GatewayConfig {
                 .route("order-service", route -> route.path("/v1/order/**")
                         .filters(f -> f.filter(authTokenFilter))
                         .uri("lb://order-service"))
-                .route("auth-service", route -> route.path("/v1/user/**")
-                        .uri("lb://user-service"))
+                .route("auth-service", route -> route.path("/v1/auth/**")
+                        .uri("lb://auth-service"))
                 .build();
     }
 }
