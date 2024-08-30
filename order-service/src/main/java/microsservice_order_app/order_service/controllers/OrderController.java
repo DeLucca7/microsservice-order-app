@@ -1,7 +1,7 @@
 package microsservice_order_app.order_service.controllers;
 
 import lombok.RequiredArgsConstructor;
-import microsservice_order_app.order_service.dtos.OrderRequestDto;
+import microsservice_order_app.order_service.dtos.requests.OrderRequestDto;
 import microsservice_order_app.order_service.models.Order;
 import microsservice_order_app.order_service.services.OrderService;
 import org.springframework.http.ResponseEntity;

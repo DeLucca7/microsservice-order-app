@@ -1,4 +1,4 @@
-package microsservice_order_app.order_service.dtos;
+package microsservice_order_app.order_service.dtos.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

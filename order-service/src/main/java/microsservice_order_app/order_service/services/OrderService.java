@@ -2,8 +2,8 @@ package microsservice_order_app.order_service.services;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import microsservice_order_app.order_service.dtos.OrderItemRequestDto;
-import microsservice_order_app.order_service.dtos.OrderRequestDto;
+import microsservice_order_app.order_service.dtos.requests.OrderItemRequestDto;
+import microsservice_order_app.order_service.dtos.requests.OrderRequestDto;
 import microsservice_order_app.order_service.models.Order;
 import microsservice_order_app.order_service.models.OrderItem;
 import microsservice_order_app.order_service.models.Product;
@@ -20,8 +20,11 @@ import java.util.stream.Collectors;
 public class OrderService {
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
+    private final UserService userService;
 
     public Order createOrder(OrderRequestDto requestDto) {
+        this.userService.checkIfUserExists(requestDto.getUserId());
+
         Order order = new Order();
 
         List<OrderItem> items = requestDto.getItems()
