@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Optional;
 
-@FeignClient(url = "http://localhost:8081/user", name = "user-service")
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+@FeignClient(name = "user-service")
 public interface UserClient  {
 
-    @GetMapping("/getUserById/{userId}")
+    @GetMapping(value = "v1/user/getUserById/{userId}",
+            headers = {"Content-Type= application/json"},
+            consumes = APPLICATION_JSON_VALUE,
+            produces = APPLICATION_JSON_VALUE)
     Optional<UserResponseDto> getUserById(@PathVariable("userId") Long userId);
 }
