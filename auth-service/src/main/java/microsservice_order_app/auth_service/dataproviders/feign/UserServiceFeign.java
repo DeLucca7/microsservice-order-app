@@ -21,7 +21,7 @@ public interface UserServiceFeign {
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<UserRegisterDto> create(@RequestBody UserRegisterRequestDto request);
 
-    @GetMapping(value = "v1/user/getUserByUsername/{username}",
+    @GetMapping(value = "/v1/user/getUserByUsername/{username}",
             headers = {"Content-Type= application/json"},
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
