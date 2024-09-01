@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@FeignClient(name = "user-service", url = "${api.url.user-service}")
+@FeignClient(name = "user-service")
 public interface UserServiceFeign {
 
-    @PostMapping(value = "/create",
+    @PostMapping(value = "/v1/user/create",
             headers = {"Content-Type= application/json"},
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<UserRegisterDto> create(@RequestBody UserRegisterRequestDto request);
 
-    @GetMapping(value = "/getUserByUsername/{username}",
+    @GetMapping(value = "v1/user/getUserByUsername/{username}",
             headers = {"Content-Type= application/json"},
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
