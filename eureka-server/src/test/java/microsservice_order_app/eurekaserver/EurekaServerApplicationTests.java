@@ -1,4 +1,4 @@
-package com.delazeri.eurekaserver;
+package microsservice_order_app.eurekaserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
