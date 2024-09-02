@@ -1,0 +1,10 @@
+springdoc:
+  swagger-ui:
+    urls:
+      - name: user-service
+        url: /user-service/v3/api-docs
+      - name: order-service
+        url: /order-service/v3/api-docs
+      - name: auth-service
+        url: /auth-service/v3/api-docs
+    path: /swagger-ui.html

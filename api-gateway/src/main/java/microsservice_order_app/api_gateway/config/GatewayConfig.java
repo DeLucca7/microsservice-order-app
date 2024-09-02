@@ -19,10 +19,16 @@ public class GatewayConfig {
                 .route("user-service", route -> route.path("/v1/user/**")
                         .filters(f -> f.filter(authTokenFilter))
                         .uri("lb://user-service"))
+                .route("user-service-swagger", route -> route.path("/user-service/v3/api-docs/**")
+                        .uri("lb://user-service"))
                 .route("order-service", route -> route.path("/v1/order/**")
                         .filters(f -> f.filter(authTokenFilter))
                         .uri("lb://order-service"))
+                .route("order-service-swagger", route -> route.path("/order-service/v3/api-docs/**")
+                        .uri("lb://order-service"))
                 .route("auth-service", route -> route.path("/v1/auth/**")
+                        .uri("lb://auth-service"))
+                .route("auth-service-swagger", route -> route.path("/auth-service/v3/api-docs/**")
                         .uri("lb://auth-service"))
                 .build();
     }
