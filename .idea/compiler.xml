@@ -12,6 +12,7 @@
         <module name="naming-service" />
         <module name="user-service" />
         <module name="order-service" />
+        <module name="eureka-server" />
       </profile>
     </annotationProcessing>
   </component>
