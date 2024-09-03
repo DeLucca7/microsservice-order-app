@@ -1,10 +1,23 @@
 springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
   swagger-ui:
-    urls:
-      - name: user-service
-        url: /user-service/v3/api-docs
-      - name: order-service
-        url: /order-service/v3/api-docs
-      - name: auth-service
-        url: /auth-service/v3/api-docs
+    enabled: true
     path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: API Gateway Service
+      - url: /auth/v3/api-docs
+        name: Auth Service
+      - url: /users/v3/api-docs
+        name: User Service
+      - url: /orders/v3/api-docs
+        name: Order Service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
