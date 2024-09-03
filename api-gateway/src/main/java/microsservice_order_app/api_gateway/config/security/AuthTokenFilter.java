@@ -23,7 +23,15 @@ public class AuthTokenFilter implements GatewayFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-        final List<String> endpointList = List.of("/v1/auth/register", "/v1/auth/login", "/eureka");
+        final List<String> endpointList = List.of(
+                "/v1/auth/register",
+                "/v1/auth/login",
+                "/eureka",
+                "/v3/api-docs",
+                "/users/v3/api-docs",
+                "/auth/v3/api-docs",
+                "/orders/v3/api-docs"
+                );
         Predicate<ServerHttpRequest> isSecuredApi = r -> endpointList.stream()
                 .noneMatch(uri -> r.getURI().getPath().contains(uri));
 

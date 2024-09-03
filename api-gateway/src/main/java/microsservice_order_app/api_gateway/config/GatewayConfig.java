@@ -24,6 +24,12 @@ public class GatewayConfig {
                         .uri("lb://order-service"))
                 .route("auth-service", route -> route.path("/v1/auth/**")
                         .uri("lb://auth-service"))
+                .route("user-service-docs", route -> route.path("/users/v3/api-docs")
+                        .uri("lb://user-service"))
+                .route("order-service-docs", route -> route.path("/orders/v3/api-docs")
+                        .uri("lb://order-service"))
+                .route("auth-service-docs", route -> route.path("/auth/v3/api-docs")
+                        .uri("lb://auth-service"))
                 .build();
     }
 }

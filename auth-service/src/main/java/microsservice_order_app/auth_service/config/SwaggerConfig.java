@@ -1,4 +1,4 @@
-package microsservice_order_app.user_service.config;
+package microsservice_order_app.auth_service.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.servers.Server;
@@ -14,9 +14,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @OpenAPIDefinition(
-        servers = { @Server(url = "/", description = "User Service") }
+        servers = { @Server(url = "/", description = "Auth Service") }
 )
-public class OpenApiConfig {
+public class SwaggerConfig {
 
     @Bean
     public OpenAPI openAPI(@Value("${application-title}") String title,
