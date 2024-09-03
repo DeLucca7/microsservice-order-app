@@ -23,7 +23,8 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers("/v1/auth/**").permitAll())
+                .authorizeHttpRequests(request -> request.requestMatchers("/v1/auth/**", "/auth/v3/api-docs", "/actuator/health")
+                        .permitAll())
                 .build();
     }
 
